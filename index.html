@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Since Parp has been gone</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #timer {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Time since Parp has been gone</h1>
+    <div id="timer"></div>
+
+    <script>
+        // Set the target date and time
+        const targetDate = new Date('2023-10-07T15:09:25-04:00'); // Adjust the time zone offset as needed
+
+        function updateTimer() {
+            const currentDate = new Date();
+            const timeDifference = targetDate - currentDate;
+            
+            if (timeDifference <= 0) {
+                document.getElementById('timer').textContent = 'Parp is back!';
+            } else {
+                const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+                document.getElementById('timer').textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }
+        }
+
+        // Update the timer every second
+        setInterval(updateTimer, 1000);
+
+        // Initial call to set the timer
+        updateTimer();
+    </script>
+</body>
+</html>
