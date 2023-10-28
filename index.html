@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Time Since Parp has been gone</title>
+    <title>Time since Parp has been gone</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -24,18 +24,16 @@
 
         function updateTimer() {
             const currentDate = new Date();
-            const timeDifference = targetDate - currentDate;
-            
-            if (timeDifference <= 0) {
-                document.getElementById('timer').textContent = 'Parp is back!';
-            } else {
-                const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+            const timeDifference = currentDate - targetDate;
 
-                document.getElementById('timer').textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-            }
+            const secondsSince = Math.floor(timeDifference / 1000);
+            const minutesSince = Math.floor(secondsSince / 60);
+            const hoursSince = Math.floor(minutesSince / 60);
+            const daysSince = Math.floor(hoursSince / 24);
+
+            const timeSinceText = `${daysSince} days, ${hoursSince % 24} hours, ${minutesSince % 60} minutes, ${secondsSince % 60} seconds`;
+
+            document.getElementById('timer').textContent = timeSinceText;
         }
 
         // Update the timer every second
