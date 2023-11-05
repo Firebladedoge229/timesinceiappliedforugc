@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Time since Parp has been gone</title>
+    <meta id="ogDescription" property="og:description" />
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -22,6 +23,25 @@
         // Set the target date and time
         const targetDate = new Date('2023-10-07T15:09:25-04:00'); // Adjust the time zone offset as needed
 
+        // Update the og:description meta tag with the time since Parp has been gone
+        function updateMetaDescription() {
+            const currentDate = new Date();
+            const timeDifference = currentDate - targetDate;
+
+            const secondsSince = Math.floor(timeDifference / 1000);
+            const minutesSince = Math.floor(secondsSince / 60);
+            const hoursSince = Math.floor(minutesSince / 60);
+            const daysSince = Math.floor(hoursSince / 24);
+
+            const timeSinceText = `${daysSince} days, ${hoursSince % 24} hours, ${minutesSince % 60} minutes, ${secondsSince % 60} seconds`;
+
+            document.getElementById('ogDescription').setAttribute('content', `Time since Parp has been gone: ${timeSinceText}`);
+        }
+
+        // Call the updateMetaDescription function to set the initial value
+        updateMetaDescription();
+
+        // Update the timer every second
         function updateTimer() {
             const currentDate = new Date();
             const timeDifference = currentDate - targetDate;
@@ -38,9 +58,6 @@
 
         // Update the timer every second
         setInterval(updateTimer, 1000);
-
-        // Initial call to set the timer
-        updateTimer();
     </script>
 </body>
 </html>
